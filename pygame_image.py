@@ -29,21 +29,22 @@ def main():
         vx=-1#横
         vy=0#縦
 
-        key_lst = pg.key.get_pressed()  # 各キーが押されているかを取得
+        key_lst = pg.key.get_pressed()
+
         if key_lst[pg.K_LEFT]:
-            vx = -1
-            # kk_rct.move_ip(-1, 0)
+            vx -= 1
+
         if key_lst[pg.K_RIGHT]:
-            vx = 1
-            # kk_rct.move_ip(2, 0)
+            vx += 2
+
         if key_lst[pg.K_UP]:
-            vy = -1 
-            # kk_rct.move_ip(0, -1)
+            vy -= 1
+
         if key_lst[pg.K_DOWN]:
-            vy = 1
-            # kk_rct.move_ip(0, 1)
-        kk_rct.x += vx
-        kk_rct.y += vy
+            vy += 1
+
+        # 計算した移動量で1回だけ動かす
+        kk_rct.move_ip(vx, vy)
         screen.blit(kk_img, kk_rct)  # こうかとんの位置
         pg.display.update()
         tmr += 1        

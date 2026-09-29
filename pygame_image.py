@@ -21,19 +21,29 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: return
         x = tmr % 3200
-        kk_rct.x -= 1
+        # kk_rct.x -= 1
         screen.blit(bg_img, [-x, 0])
         screen.blit(bg_flip, [-x + 1600, 0])
         screen.blit(bg_img, [-x + 3200, 0])
+
+        vx=-1#横
+        vy=0#縦
+
         key_lst = pg.key.get_pressed()  # 各キーが押されているかを取得
         if key_lst[pg.K_LEFT]:
-            kk_rct.move_ip(-1, 0)
+            vx = -1
+            # kk_rct.move_ip(-1, 0)
         if key_lst[pg.K_RIGHT]:
-            kk_rct.move_ip(2, 0)
+            vx = 1
+            # kk_rct.move_ip(2, 0)
         if key_lst[pg.K_UP]:
-            kk_rct.move_ip(0, -1)
+            vy = -1 
+            # kk_rct.move_ip(0, -1)
         if key_lst[pg.K_DOWN]:
-            kk_rct.move_ip(0, 1)
+            vy = 1
+            # kk_rct.move_ip(0, 1)
+        kk_rct.x += vx
+        kk_rct.y += vy
         screen.blit(kk_img, kk_rct)  # こうかとんの位置
         pg.display.update()
         tmr += 1        
